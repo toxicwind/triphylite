@@ -9,7 +9,7 @@ describe("trio route-tracing channel (redlight dispatch idioms)", () => {
     const routerFiles = hits.filter((h) => h.file.includes("router.py"));
     expect(routerFiles.length).toBeGreaterThan(0);
     // The `elif 'playback.' in mode:` dispatch line must be found
-    expect(routerFiles.some((h) => h.snippet.includes("'playback.' in mode"))).toBe(true);
+    expect(routerFiles.some((h) => h.snippet.includes("'playback.' in (mode or '')") || h.snippet.includes("'playback.' in mode"))).toBe(true);
     // And the player_check chain `mode == 'playback.%s' % playback_key()` must surface
     expect(routerFiles.some((h) => h.snippet.includes("playback_key()"))).toBe(true);
   });

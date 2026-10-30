@@ -188,6 +188,8 @@ export async function searchRoutes(dir: string, mode: string, limit = 25): Promi
                 (/['"][^'"]*['"]\s+in\s+(?:mode|action|params|self\.params|plugin)/.test(line) && lineHasNeedle) ||
                 (/mode\.(?:startswith|endswith)\s*\(/.test(line) && lineHasNeedle) ||
                 (/^\s*(?:elif|if|case)\s+['"]/.test(line) && lineHasNeedle) ||
+(/^\s*return\s+['\"][^'\"]*/.test(line) && lineHasNeedle) ||
+                (/^\s*(?:elif|if|case)\s+\w+\(/.test(line) && lineHasNeedle) ||
                 /['"][^'"]+['"]\s*:\s*(?:['"]|exec|return|def\b|function)/.test(line) ||
                 /(\bmode\b|\baction\b).*(?:==|in|:)\s*['"]/.test(line) ||
                 /def\s+\w*/.test(line) && /(?:params|mode|action)/.test(line);
