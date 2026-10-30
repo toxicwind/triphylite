@@ -1,0 +1,15 @@
+{
+  "name": "@geode/triphylite",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Federated parallel AST + BM25 + LSP code intelligence and audit MCP server.",
+  "main": "src/index.ts",
+  "bin": {
+    "triphylite": "bin/triphylite"
+  },
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "test": "bun test"
+  },
+  "keywords": ["mcp", "ast", "bm25", "lsp", "rrf", "code-audit"]
+}

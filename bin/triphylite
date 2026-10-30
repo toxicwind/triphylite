@@ -1,0 +1,12 @@
+#!/usr/bin/env bun
+import { spawn } from "node:child_process";
+import { resolve } from "node:path";
+
+const entry = resolve(import.meta.dir, "../src/index.ts");
+const child = spawn("bun", ["run", entry], {
+  stdio: ["inherit", "inherit", "inherit"],
+});
+
+child.on("exit", (code) => {
+  process.exit(code ?? 0);
+});
