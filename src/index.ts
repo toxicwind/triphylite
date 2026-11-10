@@ -91,6 +91,20 @@ async function handleRpcMessage(msg: any) {
               required: ["query"],
             },
           },
+          {
+            name: "trio_route",
+            description:
+              "Structural route-dispatch tracing: given a mode/action/route key (e.g. 'playback.media', 'search.get_key_id'), find the dispatch-table entries and handler definitions that route to it, across router/navigator/dialogs files. Returns per-file line hits with the dispatch predicate.",
+            inputSchema: {
+              type: "object",
+              properties: {
+                route: { type: "string", description: "Mode/action key to trace" },
+                path: { type: "string", description: "Directory to search (default .)" },
+                limit: { type: "integer", description: "Max hits (default 25)" },
+              },
+              required: ["route"],
+            },
+          },
         ],
       },
     });
@@ -175,18 +189,4 @@ async function handleRpcMessage(msg: any) {
   }
 
   sendRpcError(id, -32601, `Method not found: ${method}`);
-},
-          {
-            name: "trio_route",
-            description:
-              "Structural route-dispatch tracing: given a mode/action/route key (e.g. 'playback.media', 'search.get_key_id'), find the dispatch-table entries and handler definitions that route to it, across router/navigator/dialogs files. Returns per-file line hits with the dispatch predicate.",
-            inputSchema: {
-              type: "object",
-              properties: {
-                route: { type: "string", description: "Mode/action key to trace" },
-                path: { type: "string", description: "Directory to search (default .)" },
-                limit: { type: "integer", description: "Max hits (default 25)" },
-              },
-              required: ["route"],
-            },
-          }
+}
